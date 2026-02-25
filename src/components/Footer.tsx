@@ -13,6 +13,8 @@ const footerLinks = {
     { name: "유권자 인사이트", href: "/services/voter-insight" },
     { name: "AI 홍보물 스튜디오", href: "/services/pr-studio" },
     { name: "실시간 경쟁 분석", href: "/services/competitor-analysis" },
+    { name: "정책 스와이프 매칭", href: "/services/policy-match" },
+    { name: "언론사 파트너 허브", href: "/services/media-partner" },
   ],
   회사: [
     { name: "소개", href: "#" },

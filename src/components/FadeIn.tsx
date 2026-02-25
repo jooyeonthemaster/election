@@ -16,15 +16,15 @@ export default function FadeIn({
   children,
   delay = 0,
   direction = "up",
-  duration = 0.6,
+  duration = 0.4,
   className = "",
   once = true,
 }: FadeInProps) {
   const directionMap = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { y: 0, x: 40 },
-    right: { y: 0, x: -40 },
+    up: { y: 24, x: 0 },
+    down: { y: -24, x: 0 },
+    left: { y: 0, x: 24 },
+    right: { y: 0, x: -24 },
     none: { y: 0, x: 0 },
   };
 

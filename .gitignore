@@ -46,3 +46,5 @@ nul
 # Claude Code / Playwright MCP
 .claude/
 .playwright-mcp/
+
+.vercel

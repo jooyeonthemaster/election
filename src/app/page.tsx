@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   MessageSquare,
+  Lightbulb,
   Radio,
   BookOpen,
   TrendingUp,
@@ -11,6 +12,8 @@ import {
   Users,
   Palette,
   BarChart3,
+  Repeat2,
+  Newspaper,
   ArrowRight,
   Zap,
   Shield,
@@ -18,6 +21,7 @@ import {
   Globe,
   ChevronRight,
   Sparkles,
+  Quote,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -36,6 +40,32 @@ const services = [
     href: "/services/pledge-bot",
     gradient: "from-blue-500 to-cyan-400",
     bgAccent: "bg-blue-50",
+  },
+  {
+    id: "pledge-craft",
+    icon: Lightbulb,
+    name: "맞춤형 공약 개발",
+    tagline: "데이터 기반 AI 공약 설계 엔진",
+    description: "강남구 예산·인구·현안 데이터를 기반으로 3가지 대안을 생성하고, 5축 정량 평가와 대화형 정제를 거쳐 캠페인 레디 공약서를 완성합니다.",
+    tag: "NEW",
+    tagColor: "primary",
+    metrics: "5축 정량 평가",
+    href: "/services/pledge-craft",
+    gradient: "from-amber-500 to-orange-400",
+    bgAccent: "bg-amber-50",
+  },
+  {
+    id: "slogan-craft",
+    icon: Quote,
+    name: "AI 슬로건 제작",
+    tagline: "데이터 기반 캠페인 슬로건 전략 엔진",
+    description: "유권자 심리 분석과 6축 정량 평가로 맞춤형 슬로건을 생성하고, 맥락별 변주와 전략 패키지로 캠페인 레디 결과물을 완성합니다.",
+    tag: "NEW",
+    tagColor: "primary",
+    metrics: "6축 전략 평가",
+    href: "/services/slogan-craft",
+    gradient: "from-pink-500 to-rose-400",
+    bgAccent: "bg-pink-50",
   },
   {
     id: "sentiment-radar",
@@ -127,6 +157,34 @@ const services = [
     href: "/services/competitor-analysis",
     gradient: "from-indigo-500 to-blue-400",
     bgAccent: "bg-indigo-50",
+  },
+  {
+    id: "policy-match",
+    icon: Repeat2,
+    name: "정책 스와이프 매칭",
+    tagline: "스와이프로 나의 후보를 찾아보세요",
+    description:
+      "Tinder 스타일의 카드 스와이프로 15개 지역 정책 이슈에 대한 입장을 표명하고, AI가 나와 가장 잘 맞는 후보를 찾아줍니다.",
+    tag: "NEW",
+    tagColor: "primary",
+    metrics: "5분 매칭 완료",
+    href: "/services/policy-match",
+    gradient: "from-teal-500 to-cyan-400",
+    bgAccent: "bg-teal-50",
+  },
+  {
+    id: "media-partner",
+    icon: Newspaper,
+    name: "언론사 파트너 허브",
+    tagline: "언론사 브랜드로 유권자에게 다가갑니다",
+    description:
+      "언론사 파트너에게 화이트라벨 정책 매칭 위젯을 제공합니다. 각 언론사의 브랜드로 커스터마이징된 위젯이 독자와 유권자를 연결합니다.",
+    tag: "",
+    tagColor: "",
+    metrics: "12개 언론사 제휴",
+    href: "/services/media-partner",
+    gradient: "from-orange-500 to-amber-400",
+    bgAccent: "bg-orange-50",
   },
 ];
 

@@ -7,13 +7,17 @@ import { Menu, X, ChevronDown, Zap } from "lucide-react";
 
 const services = [
   { name: "AI 공약 챗봇", href: "/services/pledge-bot", tag: "HOT" },
-  { name: "민심 레이더", href: "/services/sentiment-radar", tag: "NEW" },
+  { name: "맞춤형 공약 개발", href: "/services/pledge-craft", tag: "NEW" },
+  { name: "AI 슬로건 제작", href: "/services/slogan-craft", tag: "NEW" },
+  { name: "민심 레이더", href: "/services/sentiment-radar", tag: "" },
   { name: "인터랙티브 공약집", href: "/services/pledge-book", tag: "" },
   { name: "여론 예측 AI", href: "/services/opinion-forecast", tag: "" },
   { name: "캠프 전략 어드바이저", href: "/services/camp-strategy", tag: "" },
   { name: "유권자 인사이트", href: "/services/voter-insight", tag: "" },
   { name: "AI 홍보물 스튜디오", href: "/services/pr-studio", tag: "NEW" },
   { name: "실시간 경쟁 분석", href: "/services/competitor-analysis", tag: "" },
+  { name: "정책 스와이프 매칭", href: "/services/policy-match", tag: "NEW" },
+  { name: "언론사 파트너 허브", href: "/services/media-partner", tag: "" },
 ];
 
 export default function Header() {

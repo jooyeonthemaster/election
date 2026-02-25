@@ -28,6 +28,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
+import ChatInterface from "@/components/ChatInterface";
 
 /* =====================================================
    DATA
@@ -109,7 +110,7 @@ const features = [
 ];
 
 const candidates = [
-  { name: "김민수", district: "서울 강남구", party: "#0052FF", role: "구청장 후보" },
+  { name: "성준기", district: "서울 강남구", party: "#0052FF", role: "구청장 후보" },
   { name: "이서연", district: "경기 성남시", party: "#10B981", role: "시장 후보" },
   { name: "박준혁", district: "부산 해운대구", party: "#EF4444", role: "구청장 후보" },
   { name: "정하은", district: "대전 유성구", party: "#F59E0B", role: "구청장 후보" },
@@ -328,7 +329,7 @@ export default function PledgeBotPage() {
               <FadeIn delay={0.3}>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Link
-                    href="#contact"
+                    href="#demo"
                     className="group flex items-center gap-2.5 px-8 py-4 bg-[var(--primary)] text-white text-[16px] font-bold rounded-2xl hover:bg-[var(--primary-dark)] transition-all duration-300 hover:shadow-[var(--shadow-primary)] hover:scale-[1.02]"
                   >
                     지금 시작하기
@@ -374,7 +375,7 @@ export default function PledgeBotPage() {
                       </div>
                       <div>
                         <p className="text-white font-bold text-[15px]">
-                          김민수 후보 AI
+                          성준기 후보 AI
                         </p>
                         <div className="flex items-center gap-1.5">
                           <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
@@ -588,149 +589,48 @@ export default function PledgeBotPage() {
         className="py-24 md:py-32 bg-[var(--surface)] relative overflow-hidden"
       >
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[var(--primary)] rounded-full blur-[250px] opacity-[0.03]" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[var(--accent)] rounded-full blur-[250px] opacity-[0.03]" />
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 relative">
-          <FadeIn className="text-center mb-16">
+          <FadeIn className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--primary-50)] border border-[var(--primary)]/10 mb-6">
-              <MessageSquare className="w-4 h-4 text-[var(--primary)]" />
+              <Sparkles className="w-4 h-4 text-[var(--primary)]" />
               <span className="text-sm font-semibold text-[var(--primary)]">
-                실시간 데모
+                AI 실시간 데모
               </span>
             </div>
             <h2
               className="text-3xl md:text-5xl font-extrabold tracking-tight mb-5"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              직접 <span className="text-gradient-primary">체험</span>해보세요
+              직접 <span className="text-gradient-primary">대화</span>해보세요
             </h2>
             <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-              실제 후보자 데이터로 학습된 AI 챗봇이 어떻게 유권자와 소통하는지
-              확인하세요.
+              강남구 정책과 공약에 대해 AI 정책비서에게 무엇이든 물어보세요.
+              <br className="hidden md:block" />
+              실제 강남구 데이터를 기반으로 즉시 답변합니다.
             </p>
           </FadeIn>
 
           <FadeIn>
-            <div className="max-w-5xl mx-auto">
-              <div className="bg-white rounded-3xl border border-[var(--border-light)] shadow-2xl overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-[280px_1fr]">
-                  {/* Sidebar - Candidate List */}
-                  <div className="border-r border-[var(--border-light)] bg-white">
-                    <div className="p-5 border-b border-[var(--border-light)]">
-                      <h3 className="text-sm font-bold text-[var(--text-primary)] mb-1">
-                        후보자 목록
-                      </h3>
-                      <p className="text-xs text-[var(--text-tertiary)]">
-                        대화할 후보를 선택하세요
-                      </p>
-                    </div>
-                    <div className="p-3">
-                      {candidates.map((c, i) => (
-                        <motion.div
-                          key={c.name}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.3 + i * 0.1 }}
-                          className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200 ${
-                            i === 0
-                              ? "bg-[var(--primary-50)] border border-[var(--primary)]/10"
-                              : "hover:bg-[var(--surface)]"
-                          }`}
-                        >
-                          <div
-                            className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
-                            style={{ backgroundColor: c.party }}
-                          >
-                            {c.name.charAt(0)}
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-sm font-semibold text-[var(--text-primary)] truncate">
-                              {c.name}
-                            </p>
-                            <p className="text-[11px] text-[var(--text-tertiary)] truncate">
-                              {c.district} {c.role}
-                            </p>
-                          </div>
-                          {i === 0 && (
-                            <span className="ml-auto w-2.5 h-2.5 rounded-full bg-[var(--success)] shrink-0" />
-                          )}
-                        </motion.div>
-                      ))}
-                    </div>
-                    {/* Sidebar footer info */}
-                    <div className="p-4 border-t border-[var(--border-light)] m-3 rounded-xl bg-[var(--surface)]">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Shield className="w-3.5 h-3.5 text-[var(--primary)]" />
-                        <span className="text-[11px] font-semibold text-[var(--primary)]">
-                          선관위 인증 챗봇
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-[var(--text-tertiary)] leading-relaxed">
-                        모든 답변은 공직선거법 가이드라인을 준수합니다.
-                      </p>
-                    </div>
-                  </div>
+            <div className="max-w-3xl mx-auto">
+              <ChatInterface />
+            </div>
+          </FadeIn>
 
-                  {/* Chat Area */}
-                  <div className="flex flex-col">
-                    {/* Chat Header */}
-                    <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-light)] bg-white">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                          style={{ backgroundColor: "#0052FF" }}
-                        >
-                          김
-                        </div>
-                        <div>
-                          <p className="text-sm font-bold text-[var(--text-primary)]">
-                            김민수 후보 AI
-                          </p>
-                          <div className="flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse" />
-                            <span className="text-[11px] text-[var(--text-tertiary)]">
-                              서울 강남구 구청장 후보
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 text-[11px] text-[var(--text-tertiary)]">
-                        <span className="px-2.5 py-1 rounded-full bg-[var(--success-light)] text-[var(--success)] font-semibold">
-                          응답률 97%
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Messages */}
-                    <div className="p-6 space-y-5 bg-[var(--surface)] min-h-[380px]">
-                      <div className="text-center">
-                        <span className="text-[11px] text-[var(--text-tertiary)] bg-white px-3 py-1 rounded-full border border-[var(--border-light)]">
-                          오늘 오후 3:24
-                        </span>
-                      </div>
-                      {chatMessages.map((msg, i) => (
-                        <ChatBubble
-                          key={`demo-${i}`}
-                          sender={msg.sender as "voter" | "bot"}
-                          text={msg.text}
-                          time={msg.time}
-                          delay={0.4 + i * 0.12}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Input */}
-                    <div className="px-6 py-4 bg-white border-t border-[var(--border-light)]">
-                      <div className="flex items-center gap-3">
-                        <div className="flex-1 bg-[var(--surface)] rounded-xl px-4 py-3 text-sm text-[var(--text-tertiary)] border border-[var(--border-light)]">
-                          메시지를 입력하세요...
-                        </div>
-                        <button className="w-10 h-10 rounded-xl bg-[var(--primary)] flex items-center justify-center hover:bg-[var(--primary-dark)] transition-colors shrink-0">
-                          <Send className="w-4 h-4 text-white" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* Trust badges */}
+          <FadeIn delay={0.2}>
+            <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-[var(--text-tertiary)]">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-[var(--primary)]" />
+                <span>선관위 가이드라인 준수</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-[var(--primary)]" />
+                <span>실시간 AI 응답</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Database className="w-4 h-4 text-[var(--primary)]" />
+                <span>2026년 최신 데이터 기반</span>
               </div>
             </div>
           </FadeIn>
