@@ -107,21 +107,15 @@ export default function Header() {
               <Link href="/#features" className="px-4 py-2 text-[15px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-[var(--surface)]">
                 주요 기능
               </Link>
-              <Link href="/#pricing" className="px-4 py-2 text-[15px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-[var(--surface)]">
-                요금제
-              </Link>
-              <Link href="/#contact" className="px-4 py-2 text-[15px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-[var(--surface)]">
-                문의하기
-              </Link>
             </nav>
 
             {/* CTA + Mobile Toggle */}
             <div className="flex items-center gap-3">
               <Link
-                href="/#contact"
+                href="/#services"
                 className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-[var(--primary)] text-white text-[14px] font-semibold rounded-xl hover:bg-[var(--primary-dark)] transition-all duration-300 hover:shadow-[var(--shadow-primary)]"
               >
-                무료 체험 시작
+                서비스 둘러보기
               </Link>
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -175,11 +169,11 @@ export default function Header() {
                 ))}
                 <div className="h-px bg-[var(--border-light)] my-4" />
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   onClick={() => setIsMobileOpen(false)}
                   className="flex items-center justify-center gap-2 px-5 py-3 bg-[var(--primary)] text-white text-[15px] font-semibold rounded-xl"
                 >
-                  무료 체험 시작
+                  서비스 둘러보기
                 </Link>
               </div>
             </motion.div>

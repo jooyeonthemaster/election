@@ -160,7 +160,7 @@ export default function CampStrategyPage() {
                 <FadeIn delay={0.3}>
                   <div className="flex flex-wrap gap-4">
                     <Link
-                      href="/#contact"
+                      href="/#services"
                       className="inline-flex items-center gap-2 px-7 py-4 bg-gradient-to-r from-rose-500 to-pink-400 text-white font-semibold rounded-2xl hover:shadow-lg hover:shadow-rose-500/25 transition-all duration-300 hover:-translate-y-0.5"
                     >
                       전략 컨설팅 신청
@@ -499,14 +499,14 @@ export default function CampStrategyPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-rose-600 font-bold rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 >
                   전략 컨설팅 시작하기
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold rounded-2xl hover:bg-white/20 transition-all duration-300"
                 >
                   상담 문의

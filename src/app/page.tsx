@@ -254,10 +254,10 @@ export default function HomePage() {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
-                  href="#contact"
+                  href="#features"
                   className="flex items-center gap-2.5 px-8 py-4 bg-white text-[var(--text-primary)] text-[16px] font-bold rounded-2xl border-2 border-[var(--border)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all duration-300"
                 >
-                  무료 상담 신청
+                  주요 기능
                 </Link>
               </div>
             </FadeIn>
@@ -408,38 +408,6 @@ export default function HomePage() {
               </FadeIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ====== CTA ====== */}
-      <section id="contact" className="py-24 md:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <FadeIn>
-            <div className="relative bg-gradient-to-br from-[var(--primary)] to-[#0043CC] rounded-3xl p-12 md:p-20 text-center overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
-              <div className="absolute inset-0 bg-grid opacity-5" />
-
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-5" style={{ fontFamily: "var(--font-display)" }}>
-                  지금 시작하세요
-                </h2>
-                <p className="text-lg text-white/70 max-w-xl mx-auto mb-10">
-                  2026 지방선거까지 남은 시간은 한정되어 있습니다.
-                  <br />
-                  AI와 함께 한발 앞선 선거 전략을 수립하세요.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button className="px-8 py-4 bg-white text-[var(--primary)] text-[16px] font-bold rounded-2xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer">
-                    무료 체험 시작하기
-                  </button>
-                  <button className="px-8 py-4 bg-white/10 text-white text-[16px] font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                    데모 예약하기
-                  </button>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
 

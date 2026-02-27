@@ -335,12 +335,6 @@ export default function PledgeBotPage() {
                     지금 시작하기
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <Link
-                    href="#demo"
-                    className="flex items-center gap-2.5 px-8 py-4 bg-white text-[var(--text-primary)] text-[16px] font-bold rounded-2xl border-2 border-[var(--border)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all duration-300"
-                  >
-                    데모 체험하기
-                  </Link>
                 </div>
               </FadeIn>
 
@@ -353,10 +347,6 @@ export default function PledgeBotPage() {
                   <div className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-[var(--success)]" />
                     <span>선관위 가이드라인 준수</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[var(--success)]" />
-                    <span>14일 무료 체험</span>
                   </div>
                 </div>
               </FadeIn>
@@ -595,7 +585,7 @@ export default function PledgeBotPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--primary-50)] border border-[var(--primary)]/10 mb-6">
               <Sparkles className="w-4 h-4 text-[var(--primary)]" />
               <span className="text-sm font-semibold text-[var(--primary)]">
-                AI 실시간 데모
+                AI 실시간 체험
               </span>
             </div>
             <h2
@@ -775,68 +765,6 @@ export default function PledgeBotPage() {
               </FadeIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ====== CTA SECTION ====== */}
-      <section id="contact" className="py-24 md:py-32 bg-[var(--surface)]">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <FadeIn>
-            <div className="relative bg-gradient-to-br from-[var(--primary)] to-[#0043CC] rounded-3xl p-12 md:p-20 text-center overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
-              <div className="absolute inset-0 bg-grid opacity-5" />
-
-              <div className="relative z-10">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-8"
-                >
-                  <MessageSquare className="w-8 h-8 text-white" />
-                </motion.div>
-
-                <h2
-                  className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-5"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  지금 AI 공약 챗봇을
-                  <br />
-                  시작하세요
-                </h2>
-                <p className="text-lg text-white/60 max-w-xl mx-auto mb-10">
-                  14일 무료 체험으로 AI 공약 챗봇의 효과를 직접 확인하세요.
-                  <br />
-                  카드 등록 없이, 설정 5분이면 충분합니다.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button className="group flex items-center gap-2.5 px-8 py-4 bg-white text-[var(--primary)] text-[16px] font-bold rounded-2xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer">
-                    무료 체험 시작하기
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                  <button className="px-8 py-4 bg-white/10 text-white text-[16px] font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                    상담 예약하기
-                  </button>
-                </div>
-                <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-white/40">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4" />
-                    <span>카드 등록 불필요</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4" />
-                    <span>14일 전체 기능 이용</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4" />
-                    <span>언제든 해지 가능</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
 

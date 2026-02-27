@@ -191,7 +191,7 @@ export default function CompetitorAnalysisPage() {
                 <FadeIn delay={0.3}>
                   <div className="flex flex-wrap gap-4">
                     <Link
-                      href="/#contact"
+                      href="/#services"
                       className="inline-flex items-center gap-2 px-7 py-4 bg-gradient-to-r from-indigo-500 to-blue-400 text-white font-semibold rounded-2xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 hover:-translate-y-0.5"
                     >
                       경쟁 분석 시작
@@ -570,14 +570,14 @@ export default function CompetitorAnalysisPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 font-bold rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 >
                   경쟁 분석 시작하기
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold rounded-2xl hover:bg-white/20 transition-all duration-300"
                 >
                   상담 문의

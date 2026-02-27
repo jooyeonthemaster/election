@@ -382,10 +382,10 @@ export default function SentimentRadarPage() {
             <FadeIn delay={0.3}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
-                  href="#contact"
+                  href="/#services"
                   className="group flex items-center gap-2.5 px-8 py-4 bg-emerald-600 text-white text-[16px] font-bold rounded-2xl hover:bg-emerald-700 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 hover:scale-[1.02]"
                 >
-                  무료 체험 시작하기
+                  시작하기
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
@@ -1476,73 +1476,6 @@ export default function SentimentRadarPage() {
                   <span className="font-medium">{badge.text}</span>
                 </div>
               ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ====== CTA SECTION ====== */}
-      <section id="contact" className="py-24 md:py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <FadeIn>
-            <div className="relative bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 rounded-3xl p-12 md:p-20 text-center overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
-              <div className="absolute inset-0 bg-grid opacity-5" />
-              <motion.div
-                animate={{ y: [-8, 8, -8] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-12 left-[15%] w-12 h-12 rounded-xl bg-white/10"
-              />
-              <motion.div
-                animate={{ y: [6, -6, 6] }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute bottom-16 right-[12%] w-16 h-16 rounded-full bg-white/5"
-              />
-
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-8">
-                  <Radio className="w-4 h-4 text-white" />
-                  <span className="text-sm font-bold text-white/90">
-                    민심 레이더
-                  </span>
-                </div>
-                <h2
-                  className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-5"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  민심 레이더를
-                  <br />
-                  시작하세요
-                </h2>
-                <p className="text-lg text-white/70 max-w-xl mx-auto mb-10">
-                  지역구 민심의 흐름을 24시간 감지하고
-                  <br className="hidden sm:block" />
-                  데이터 기반 선거 전략을 수립하세요
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button className="px-8 py-4 bg-white text-emerald-700 text-[16px] font-bold rounded-2xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer">
-                    무료 체험 시작하기
-                  </button>
-                  <Link
-                    href="/"
-                    className="px-8 py-4 bg-white/10 text-white text-[16px] font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300"
-                  >
-                    다른 서비스 둘러보기
-                  </Link>
-                </div>
-                <p className="text-sm text-white/50 mt-6">
-                  7일 무료 체험 &middot; 신용카드 불필요 &middot; 언제든 해지 가능
-                </p>
-              </div>
             </div>
           </FadeIn>
         </div>

@@ -22,7 +22,6 @@ import {
   Check,
   ExternalLink,
   Users,
-  Star,
   Shield,
   Building,
   TrendingUp,
@@ -106,49 +105,6 @@ const mediaPartners: MediaPartner[] = [
     readers: "38만",
     articles: 980,
     region: "전라남도",
-  },
-];
-
-const partnerTiers = [
-  {
-    name: "Basic",
-    price: "월 99만원",
-    description: "소규모 지역 언론사에 적합",
-    features: [
-      "위젯 1개 제공",
-      "기본 브랜드 커스터마이징",
-      "월간 성과 리포트",
-      "이메일 기술 지원",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    price: "월 249만원",
-    description: "중견 언론사를 위한 프리미엄 솔루션",
-    features: [
-      "위젯 3개 제공",
-      "풀 브랜드 커스터마이징",
-      "실시간 분석 대시보드",
-      "전담 파트너 매니저",
-      "API 접근 권한",
-      "맞춤 질문 설계",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    price: "맞춤 견적",
-    description: "대형 언론사를 위한 엔터프라이즈 솔루션",
-    features: [
-      "무제한 위젯",
-      "완전 화이트라벨",
-      "맞춤 기능 개발",
-      "SLA 99.9% 보장",
-      "전용 인프라",
-      "우선 기술 지원",
-    ],
-    highlight: false,
   },
 ];
 
@@ -544,7 +500,7 @@ export default function MediaPartnerPage() {
                 <FadeIn delay={0.3}>
                   <div className="flex flex-wrap gap-4">
                     <Link
-                      href="/#contact"
+                      href="/#services"
                       className="inline-flex items-center gap-2 px-7 py-4 bg-gradient-to-r from-orange-500 to-amber-400 text-white font-semibold rounded-2xl hover:shadow-lg hover:shadow-orange-500/25 transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-0.5"
                     >
                       파트너 신청하기
@@ -849,86 +805,6 @@ export default function MediaPartnerPage() {
           </div>
         </section>
 
-        {/* Partnership Tiers */}
-        <section className="py-24 lg:py-32 bg-[var(--surface)] relative">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-            <FadeIn>
-              <div className="text-center max-w-2xl mx-auto mb-16">
-                <span className="inline-block text-sm font-bold text-orange-600 tracking-wider uppercase mb-4">
-                  Partnership Plans
-                </span>
-                <h2
-                  className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] mb-5"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  언론사 규모에 맞는 플랜을 선택하세요
-                </h2>
-              </div>
-            </FadeIn>
-
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {partnerTiers.map((tier, i) => (
-                <FadeIn key={tier.name} delay={i * 0.06}>
-                  <div
-                    className={`relative bg-white rounded-2xl border p-7 transition-[transform,box-shadow,background-color] duration-200 ${
-                      tier.highlight
-                        ? "border-orange-400 shadow-xl shadow-orange-500/10 scale-105"
-                        : "border-[var(--border-light)] hover:shadow-lg"
-                    }`}
-                  >
-                    {tier.highlight && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-400 text-white text-xs font-bold flex items-center gap-1">
-                        <Star className="w-3 h-3" />
-                        추천
-                      </div>
-                    )}
-                    <h3 className="text-xl font-bold text-[var(--text-primary)] mb-1">
-                      {tier.name}
-                    </h3>
-                    <p className="text-sm text-[var(--text-tertiary)] mb-4">
-                      {tier.description}
-                    </p>
-                    <div
-                      className="text-3xl font-extrabold mb-6"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        color: tier.highlight ? "#EA580C" : "var(--text-primary)",
-                      }}
-                    >
-                      {tier.price}
-                    </div>
-                    <div className="space-y-3 mb-6">
-                      {tier.features.map((f) => (
-                        <div key={f} className="flex items-center gap-2.5">
-                          <Check
-                            className="w-4 h-4 shrink-0"
-                            style={{
-                              color: tier.highlight ? "#EA580C" : "#10B981",
-                            }}
-                          />
-                          <span className="text-sm text-[var(--text-secondary)]">
-                            {f}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                    <Link
-                      href="/#contact"
-                      className={`block text-center py-3 rounded-xl font-semibold text-sm transition-all ${
-                        tier.highlight
-                          ? "bg-gradient-to-r from-orange-500 to-amber-400 text-white hover:shadow-lg hover:shadow-orange-500/25"
-                          : "bg-[var(--surface)] text-[var(--text-primary)] hover:bg-gray-100"
-                      }`}
-                    >
-                      {tier.name === "Enterprise" ? "문의하기" : "시작하기"}
-                    </Link>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Metrics Section */}
         <section className="py-24 lg:py-32 bg-gradient-to-br from-[#0B1222] to-[#1a2744] text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[80px]" />
@@ -998,7 +874,7 @@ export default function MediaPartnerPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-orange-600 font-bold rounded-2xl hover:shadow-xl transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-0.5"
                 >
                   파트너 신청하기

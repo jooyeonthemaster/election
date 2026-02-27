@@ -652,7 +652,7 @@ export default function PledgeBookPage() {
                   href="#live-preview"
                   className="group flex items-center gap-2.5 px-8 py-4 bg-[var(--primary)] text-white text-[16px] font-bold rounded-2xl hover:bg-[var(--primary-dark)] transition-all duration-300 hover:shadow-[var(--shadow-primary)] hover:scale-[1.02]"
                 >
-                  무료로 만들어보기
+                  만들어보기
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
@@ -1140,26 +1140,15 @@ export default function PledgeBookPage() {
                 </h2>
                 <p className="text-lg text-white/60 max-w-xl mx-auto mb-10">
                   5분이면 완성되는 AI 공약집. 유권자와의 새로운 소통을 시작하세요.
-                  <br />
-                  첫 1개월 무료 체험이 가능합니다.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Link
-                    href="/#contact"
+                    href="/#services"
                     className="px-8 py-4 bg-white text-[#7C3AED] text-[16px] font-bold rounded-2xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
                   >
-                    무료 체험 시작하기
-                  </Link>
-                  <Link
-                    href="/#contact"
-                    className="px-8 py-4 bg-white/10 text-white text-[16px] font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300"
-                  >
-                    데모 예약하기
+                    시작하기
                   </Link>
                 </div>
-                <p className="text-sm text-white/40 mt-8">
-                  신용카드 불필요 &middot; 5분 만에 완성 &middot; 언제든 해지 가능
-                </p>
               </div>
             </div>
           </FadeIn>

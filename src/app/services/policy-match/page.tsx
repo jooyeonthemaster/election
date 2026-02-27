@@ -1351,7 +1351,7 @@ export default function PolicyMatchPage() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/#contact"
+                  href="/#services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 bg-white/[0.03] border border-white/30 text-white font-bold rounded-2xl hover:bg-white/20 transition-[transform,box-shadow,background-color] duration-200"
                 >
                   도입 문의
