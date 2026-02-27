@@ -110,7 +110,7 @@ const features = [
 ];
 
 const candidates = [
-  { name: "성준기", district: "서울 강남구", party: "#0052FF", role: "구청장 후보" },
+  { name: "네안데르", district: "서울 강남구", party: "#0052FF", role: "구청장 후보" },
   { name: "이서연", district: "경기 성남시", party: "#10B981", role: "시장 후보" },
   { name: "박준혁", district: "부산 해운대구", party: "#EF4444", role: "구청장 후보" },
   { name: "정하은", district: "대전 유성구", party: "#F59E0B", role: "구청장 후보" },
@@ -375,7 +375,7 @@ export default function PledgeBotPage() {
                       </div>
                       <div>
                         <p className="text-white font-bold text-[15px]">
-                          성준기 후보 AI
+                          네안데르 후보 AI
                         </p>
                         <div className="flex items-center gap-1.5">
                           <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />

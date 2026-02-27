@@ -235,7 +235,7 @@ function ScoreBar({ label, value }: { label: string; value: number }) {
    ANALYSIS LOADER
    ================================================ */
 const SLOGAN_PHASES = [
-  { icon: Database, label: "후보·지역 프로필 로드", desc: "성준기 후보 · 강남구 · 국민의힘 맥락 분석" },
+  { icon: Database, label: "후보·지역 프로필 로드", desc: "네안데르 후보 · 강남구 · 국민의힘 맥락 분석" },
   { icon: Users, label: "타겟 유권자 심리 분석", desc: "선택된 세그먼트의 핵심 가치관·투표 동기 매핑" },
   { icon: Target, label: "경쟁 후보 차별화 분석", desc: "야당 메시지 패턴 대비 포지셔닝 전략 수립" },
   { icon: Brain, label: "언어 패턴 최적화", desc: "기억성·호소력·진정성 균형 언어 설계" },
@@ -937,7 +937,7 @@ export default function SloganCraftWizard() {
                   <h3 className="text-xl font-bold text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
                     슬로건 전략 패키지
                   </h3>
-                  <p className="text-xs text-[var(--text-tertiary)]">성준기 후보 | 강남구청장</p>
+                  <p className="text-xs text-[var(--text-tertiary)]">네안데르 후보 | 강남구청장</p>
                 </div>
                 <button
                   onClick={copyToClipboard}

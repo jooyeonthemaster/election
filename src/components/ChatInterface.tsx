@@ -256,7 +256,7 @@ export default function ChatInterface() {
             </div>
             <div>
               <p className="text-white font-bold text-[15px] tracking-tight">
-                성준기 후보 AI 정책비서
+                네안데르 후보 AI 정책비서
               </p>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
@@ -321,7 +321,7 @@ export default function ChatInterface() {
               transition={{ delay: 0.25, duration: 0.4 }}
               className="text-sm text-[var(--text-secondary)] mb-8 max-w-sm leading-relaxed"
             >
-              성준기 후보의 AI 정책비서가 강남구 발전을 위한
+              네안데르 후보의 AI 정책비서가 강남구 발전을 위한
               <br />
               비전과 공약을 상세히 안내해드립니다.
             </motion.p>

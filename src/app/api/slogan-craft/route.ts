@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
-const BASE_CONTEXT = `당신은 2026년 6.3 지방선거에 출마하는 서울특별시 강남구청장 후보 성준기(국민의힘)의 캠페인 슬로건 전략 AI 전문가입니다.
+const BASE_CONTEXT = `당신은 2026년 6.3 지방선거에 출마하는 서울특별시 강남구청장 후보 네안데르(국민의힘)의 캠페인 슬로건 전략 AI 전문가입니다.
 
 ## 후보 프로필
-- 이름: 성준기
+- 이름: 네안데르
 - 정당: 국민의힘 (보수 성향, 핵심 가치: 자유·책임·기회)
 - 출마: 강남구청장 (서울시 인구 2위, 55.6만명)
 - 슬로건 현재 방향: "강남의 다음 100년, AI와 함께"

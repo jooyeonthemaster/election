@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
-const BASE_CONTEXT = `당신은 2026년 6.3 지방선거에 출마하는 서울특별시 강남구청장 후보 성준기(국민의힘)의 맞춤형 공약 개발 AI 전문가입니다.
+const BASE_CONTEXT = `당신은 2026년 6.3 지방선거에 출마하는 서울특별시 강남구청장 후보 네안데르(국민의힘)의 맞춤형 공약 개발 AI 전문가입니다.
 
 ## 강남구 핵심 데이터
 - 인구: 556,330명 (서울시 2위)

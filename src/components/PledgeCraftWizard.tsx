@@ -1074,7 +1074,7 @@ export default function PledgeCraftWizard() {
               <div className="rounded-2xl border border-[var(--border-light)] overflow-hidden">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-[var(--primary)] to-[#3378FF] p-6 text-white">
-                  <p className="text-xs font-medium text-white/60 mb-1">성준기 후보 | 강남구청장 공약</p>
+                  <p className="text-xs font-medium text-white/60 mb-1">네안데르 후보 | 강남구청장 공약</p>
                   <h4 className="text-2xl font-bold mb-2" style={{ fontFamily: "var(--font-display)" }}>{finalPolicy.title}</h4>
                   <p className="text-sm text-white/80 italic">&ldquo;{finalPolicy.slogan}&rdquo;</p>
                 </div>
