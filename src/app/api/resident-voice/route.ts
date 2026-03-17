@@ -83,8 +83,9 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Resident voice error:", error);
+    const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "구민의 소리 처리 중 오류가 발생했습니다." },
+      { error: "구민의 소리 처리 중 오류가 발생했습니다.", detail: message },
       { status: 500 }
     );
   }
