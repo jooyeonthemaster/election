@@ -86,7 +86,9 @@ async function storeArticles(articles: Array<{ source: string; title: string; co
     district: '강남구',
   }));
 
-  await supabaseAdmin.from('articles').upsert(rows, { onConflict: 'url' }).select();
+  if (supabaseAdmin) {
+    await supabaseAdmin.from('articles').upsert(rows, { onConflict: 'url' }).select();
+  }
 }
 
 export async function POST(request: Request) {
