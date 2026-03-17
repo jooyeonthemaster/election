@@ -125,7 +125,8 @@ export async function POST(request: Request) {
       `${i+1}. [${a.source}] ${a.title} - ${a.content?.slice(0, 100) || ''}`
     ).join('\n');
 
-    const prompt = `다음은 "${query}" 관련 최신 뉴스/블로그 ${allArticles.length}건 중 상위 내용입니다:
+    const prompt = `다음은 "${query}" 관련 최신 뉴스/블로그 ${allArticles.length}건 중 상위 내용입니다.
+채널별 수집 건수: 네이버 뉴스 ${naverNews.length}건, 네이버 블로그 ${naverBlog.length}건, 카카오 웹 ${kakaoWeb.length}건.
 
 ${articleSummary}
 
@@ -151,7 +152,8 @@ ${articleSummary}
   ]
 }
 
-trendingKeywords는 8-12개, recentMentions는 5-6개, hotIssues는 3-5개, channelBreakdown은 수집 채널별로 생성하세요.
+trendingKeywords는 8-12개, recentMentions는 5-6개, hotIssues는 3-5개.
+channelBreakdown은 반드시 "네이버 뉴스", "네이버 블로그", "카카오 웹" 3개 채널 모두 포함하세요. 각 채널의 실제 수집 건수를 정확히 반영하세요.
 JSON만 출력하세요.`;
 
     const result = await model.generateContent(prompt);
