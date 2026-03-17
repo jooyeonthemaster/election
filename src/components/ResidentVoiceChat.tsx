@@ -48,6 +48,8 @@ export default function ResidentVoiceChat() {
   const [isStreaming, setIsStreaming] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const savedVoiceIdRef = useRef<string | null>(null);
+  const saveQueueRef = useRef<Promise<void>>(Promise.resolve());
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const isNearBottomRef = useRef(true);
@@ -78,10 +80,11 @@ export default function ResidentVoiceChat() {
     if (!text.trim() || isLoading || isStreaming) return;
 
     setHasStarted(true);
+    const trimmedText = text.trim();
     const userMessage: Message = {
       id: generateId(),
       role: "user",
-      content: text.trim(),
+      content: trimmedText,
       timestamp: new Date(),
     };
 
@@ -89,6 +92,22 @@ export default function ResidentVoiceChat() {
     setMessages(updatedMessages);
     setInput("");
     setIsLoading(true);
+
+    // 즉시 저장: 사용자 메시지를 AI가 분류하여 Supabase에 저장 (세션 내 1 row, 직렬화)
+    saveQueueRef.current = saveQueueRef.current.then(() =>
+      fetch("/api/resident-voice/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: trimmedText, voiceId: savedVoiceIdRef.current }),
+      })
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.data?.id && !savedVoiceIdRef.current) {
+            savedVoiceIdRef.current = d.data.id;
+          }
+        })
+        .catch(() => {})
+    );
 
     // Reset textarea height
     if (inputRef.current) inputRef.current.style.height = "auto";
@@ -156,30 +175,6 @@ export default function ResidentVoiceChat() {
       }
 
       setIsStreaming(false);
-
-      // Check for summary and store in localStorage
-      if (accumulated.includes("---SUMMARY_START---")) {
-        try {
-          const summaryMatch = accumulated.match(/---SUMMARY_START---([\s\S]*?)---SUMMARY_END---/);
-          if (summaryMatch) {
-            const summaryText = summaryMatch[1].trim();
-            const lines = summaryText.split("\n");
-            const voice: Record<string, string> = { id: generateId(), timestamp: new Date().toISOString() };
-            for (const line of lines) {
-              const [key, ...vals] = line.split(":");
-              if (key && vals.length) {
-                const cleanKey = key.trim().replace(/[[\]]/g, "");
-                voice[cleanKey] = vals.join(":").trim();
-              }
-            }
-            const existing = JSON.parse(localStorage.getItem("resident-voices") || "[]");
-            existing.push(voice);
-            localStorage.setItem("resident-voices", JSON.stringify(existing));
-          }
-        } catch {
-          // ignore localStorage errors
-        }
-      }
     } catch {
       setIsLoading(false);
       setIsStreaming(false);
@@ -206,6 +201,7 @@ export default function ResidentVoiceChat() {
     setMessages([]);
     setHasStarted(false);
     setInput("");
+    savedVoiceIdRef.current = null;
   };
 
   return (
@@ -290,7 +286,7 @@ export default function ResidentVoiceChat() {
                   {msg.role === "assistant" ? (
                     <div className="prose prose-sm max-w-none">
                       <ReactMarkdown>
-                        {msg.content.replace(/---SUMMARY_START---[\s\S]*?---SUMMARY_END---/, "").trim() || (isStreaming ? "..." : "")}
+                        {msg.content || (isStreaming ? "..." : "")}
                       </ReactMarkdown>
                     </div>
                   ) : (

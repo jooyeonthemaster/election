@@ -79,17 +79,21 @@ export default function CandidateDashboard() {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [voiceCount, setVoiceCount] = useState(0);
 
   useEffect(() => {
     fetch("/api/auth/me")
       .then((res) => res.ok ? res.json() : null)
       .then((data) => {
-        if (data?.session) {
-          setSession(data.session);
-        }
+        if (data?.session) setSession(data.session);
         setLoading(false);
       })
       .catch(() => setLoading(false));
+
+    fetch("/api/resident-voice/list")
+      .then((res) => res.json())
+      .then((data) => setVoiceCount(data.stats?.total || 0))
+      .catch(() => {});
   }, []);
 
   const handleLogout = async () => {
@@ -156,17 +160,18 @@ export default function CandidateDashboard() {
         <FadeIn delay={0.1}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              { label: "오늘 수집 뉴스", value: "-", icon: Activity, color: "text-emerald-600", bg: "bg-emerald-50" },
-              { label: "민심 긍정률", value: "-", icon: Radio, color: "text-blue-600", bg: "bg-blue-50" },
-              { label: "구민의 소리", value: "-", icon: MessageSquare, color: "text-amber-600", bg: "bg-amber-50" },
-              { label: "검색 트렌드", value: "-", icon: TrendingUp, color: "text-purple-600", bg: "bg-purple-50" },
+              { label: "오늘 수집 뉴스", value: "-", icon: Activity, color: "text-emerald-600", bg: "bg-emerald-50", href: "" },
+              { label: "민심 긍정률", value: "-", icon: Radio, color: "text-blue-600", bg: "bg-blue-50", href: "" },
+              { label: "구민의 소리", value: voiceCount > 0 ? `${voiceCount}건` : "-", icon: MessageSquare, color: "text-amber-600", bg: "bg-amber-50", href: "/candidate/voices" },
+              { label: "검색 트렌드", value: "-", icon: TrendingUp, color: "text-purple-600", bg: "bg-purple-50", href: "" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.05 }}
-                className="bg-white rounded-xl border border-[var(--border-light)] p-5"
+                onClick={() => stat.href && router.push(stat.href)}
+                className={`bg-white rounded-xl border border-[var(--border-light)] p-5 ${stat.href ? "cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all" : ""}`}
               >
                 <div className={`w-8 h-8 ${stat.bg} rounded-lg flex items-center justify-center mb-3`}>
                   <stat.icon className={`w-4 h-4 ${stat.color}`} />

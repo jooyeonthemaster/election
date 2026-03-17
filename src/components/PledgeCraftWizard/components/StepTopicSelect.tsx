@@ -2,8 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, Users, TrendingUp, Target, Vote } from "lucide-react";
+import { Search, X, Users, TrendingUp, Target, Vote, MessageSquare, Loader2, Plus } from "lucide-react";
 import { CATEGORIES, TARGETS, VOTER_DATA, PRIORITIES, BUDGETS } from "../constants";
+
+interface VoiceDataItem {
+  summary: string;
+  request: string;
+  category: string;
+  emotion: string;
+}
 
 interface StepTopicSelectProps {
   step: number;
@@ -19,6 +26,10 @@ interface StepTopicSelectProps {
   setConcern: (v: string) => void;
   infoTarget: string | null;
   setInfoTarget: (v: string | null) => void;
+  voiceData: { categories: [string, number][]; voices: VoiceDataItem[] } | null;
+  isLoadingVoice: boolean;
+  onLoadVoiceData: () => void;
+  onApplyVoice: (text: string) => void;
 }
 
 export default function StepTopicSelect({
@@ -35,6 +46,10 @@ export default function StepTopicSelect({
   setConcern,
   infoTarget,
   setInfoTarget,
+  voiceData,
+  isLoadingVoice,
+  onLoadVoiceData,
+  onApplyVoice,
 }: StepTopicSelectProps) {
   if (step === 0) {
     return (
@@ -240,14 +255,70 @@ export default function StepTopicSelect({
         </div>
       </div>
 
+      {/* 민심 데이터 불러오기 */}
+      <div className="mb-5">
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-xs font-bold text-[var(--text-primary)] flex items-center gap-1.5">
+            <MessageSquare className="w-3.5 h-3.5 text-amber-500" />
+            민심 데이터 반영
+          </label>
+          <button
+            onClick={onLoadVoiceData}
+            disabled={isLoadingVoice}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 transition disabled:opacity-50"
+          >
+            {isLoadingVoice ? <Loader2 className="w-3 h-3 animate-spin" /> : <MessageSquare className="w-3 h-3" />}
+            {voiceData ? "새로고침" : "민심 데이터 불러오기"}
+          </button>
+        </div>
+
+        {voiceData && (
+          <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-4 space-y-3">
+            {voiceData.categories.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {voiceData.categories.slice(0, 5).map(([cat, count]) => (
+                  <span key={cat} className="text-[11px] px-2.5 py-1 bg-white rounded-full border border-amber-200 text-amber-800 font-medium">
+                    {cat} {count}건
+                  </span>
+                ))}
+              </div>
+            )}
+            <div className="space-y-2 max-h-[200px] overflow-y-auto">
+              {voiceData.voices.map((v, i) => (
+                <div key={i} className="flex items-start gap-2 p-2.5 bg-white rounded-lg border border-amber-100">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <span className="text-[10px] font-medium px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded">{v.category}</span>
+                      <span className="text-[10px] text-[var(--text-tertiary)]">{v.emotion}</span>
+                    </div>
+                    <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{v.summary}</p>
+                  </div>
+                  <button
+                    onClick={() => onApplyVoice(v.summary + (v.request ? ` (${v.request})` : ""))}
+                    className="flex-shrink-0 w-6 h-6 rounded-md bg-[var(--primary-50)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white flex items-center justify-center transition"
+                    title="관심사에 반영"
+                  >
+                    <Plus className="w-3 h-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
+            {voiceData.voices.length === 0 && (
+              <p className="text-xs text-amber-600 text-center py-2">아직 접수된 민심 데이터가 없습니다.</p>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* Concern */}
       <div>
         <label className="text-xs font-bold text-[var(--text-primary)] mb-2 block">핵심 관심사 (선택)</label>
-        <input
+        <textarea
           value={concern}
           onChange={(e) => setConcern(e.target.value)}
           placeholder="예: 대치동 학원비 부담 해소, 위례신사선 조기 착공..."
-          className="w-full px-4 py-2.5 rounded-xl bg-[var(--surface)] border border-[var(--border-light)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] outline-none focus:border-[var(--primary)]/40 focus:ring-2 focus:ring-[var(--primary)]/10"
+          rows={concern.length > 60 ? 3 : 1}
+          className="w-full px-4 py-2.5 rounded-xl bg-[var(--surface)] border border-[var(--border-light)] text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] outline-none focus:border-[var(--primary)]/40 focus:ring-2 focus:ring-[var(--primary)]/10 resize-none"
         />
       </div>
     </motion.div>

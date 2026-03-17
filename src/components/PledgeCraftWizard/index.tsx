@@ -39,6 +39,9 @@ export default function PledgeCraftWizard() {
   const [copied, setCopied] = useState(false);
   const [infoTarget, setInfoTarget] = useState<string | null>(null);
 
+  const [voiceData, setVoiceData] = useState<{ categories: [string, number][]; voices: { summary: string; request: string; category: string; emotion: string }[] } | null>(null);
+  const [isLoadingVoice, setIsLoadingVoice] = useState(false);
+
   const refineContainerRef = useRef<HTMLDivElement>(null);
 
   const toggleTarget = (t: string) => {
@@ -50,6 +53,31 @@ export default function PledgeCraftWizard() {
     if (step === 1) return targets.length > 0 && !!priority && !!budgetScale;
     if (step === 2) return !!selectedPolicy;
     return true;
+  };
+
+  const loadVoiceData = async () => {
+    setIsLoadingVoice(true);
+    try {
+      const res = await fetch("/api/resident-voice/list");
+      const data = await res.json();
+      const categories = Object.entries(data.stats?.byCategory || {})
+        .sort(([, a], [, b]) => (b as number) - (a as number)) as [string, number][];
+      const voices = (data.voices || []).slice(0, 10).map((v: { summary: string; request: string; category: string; emotion: string }) => ({
+        summary: v.summary,
+        request: v.request,
+        category: v.category,
+        emotion: v.emotion,
+      }));
+      setVoiceData({ categories, voices });
+    } catch {
+      alert("민심 데이터를 불러오지 못했습니다.");
+    } finally {
+      setIsLoadingVoice(false);
+    }
+  };
+
+  const applyVoiceToConcern = (text: string) => {
+    setConcern((prev) => prev ? `${prev}, ${text}` : text);
   };
 
   /* ---- API calls ---- */
@@ -242,6 +270,10 @@ export default function PledgeCraftWizard() {
               setConcern={setConcern}
               infoTarget={infoTarget}
               setInfoTarget={setInfoTarget}
+              voiceData={voiceData}
+              isLoadingVoice={isLoadingVoice}
+              onLoadVoiceData={loadVoiceData}
+              onApplyVoice={applyVoiceToConcern}
             />
           )}
 

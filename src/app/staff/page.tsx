@@ -16,7 +16,7 @@ import {
   Users,
   FileText,
   PenTool,
-  Megaphone,
+  MessageSquare,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 
@@ -93,6 +93,7 @@ export default function StaffDashboard() {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [voiceCount, setVoiceCount] = useState(0);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -102,6 +103,11 @@ export default function StaffDashboard() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+
+    fetch("/api/resident-voice/list")
+      .then((res) => res.json())
+      .then((data) => setVoiceCount(data.stats?.total || 0))
+      .catch(() => {});
   }, []);
 
   const handleLogout = async () => {
@@ -166,12 +172,13 @@ export default function StaffDashboard() {
 
         {/* Quick Actions */}
         <FadeIn delay={0.1}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
             {[
               { label: "공약 생성", icon: FileText, color: "text-amber-600", bg: "bg-amber-50", href: "/services/pledge-craft" },
               { label: "슬로건 제작", icon: PenTool, color: "text-pink-600", bg: "bg-pink-50", href: "/services/slogan-craft" },
               { label: "홍보물 제작", icon: Palette, color: "text-fuchsia-600", bg: "bg-fuchsia-50", href: "/services/pr-studio" },
-              { label: "전략 수립", icon: Megaphone, color: "text-rose-600", bg: "bg-rose-50", href: "/services/camp-strategy" },
+              { label: "전략 수립", icon: Target, color: "text-rose-600", bg: "bg-rose-50", href: "/services/camp-strategy" },
+              { label: `구민의 소리${voiceCount > 0 ? ` (${voiceCount})` : ""}`, icon: MessageSquare, color: "text-amber-600", bg: "bg-amber-50", href: "/staff/voices" },
             ].map((action, i) => (
               <motion.div
                 key={action.label}
