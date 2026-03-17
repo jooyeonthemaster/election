@@ -177,7 +177,7 @@ async function handleGenerate(body: {
   budgetScale: string;
 }) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-preview-05-20",
+    model: "gemini-3-flash-preview",
     systemInstruction: GENERATE_PROMPT,
   });
 
@@ -212,7 +212,7 @@ async function handleRefine(body: {
   messages: { role: string; content: string }[];
 }) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-preview-05-20",
+    model: "gemini-3-flash-preview",
     systemInstruction: REFINE_PROMPT,
   });
 
@@ -279,7 +279,7 @@ async function handleFinalize(body: {
   targets: string[];
 }) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-preview-05-20",
+    model: "gemini-3-flash-preview",
     systemInstruction: FINALIZE_PROMPT,
   });
 

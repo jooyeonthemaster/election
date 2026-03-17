@@ -87,7 +87,7 @@ export async function POST(request: Request) {
     ).join('\n');
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash-preview-05-20',
+      model: 'gemini-3-flash-preview',
       systemInstruction: `당신은 강남구 2026 지방선거 여론 예측 AI입니다.
 실제 검색 트렌드와 뉴스 데이터를 기반으로 선거 예측 분석을 생성합니다.
 반드시 JSON 형식으로만 응답하세요.

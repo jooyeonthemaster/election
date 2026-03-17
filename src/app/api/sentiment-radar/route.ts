@@ -110,7 +110,7 @@ export async function POST(request: Request) {
 
     // Use Gemini to analyze sentiment
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash-preview-05-20',
+      model: 'gemini-3-flash-preview',
       systemInstruction: `당신은 강남구 2026 지방선거 민심 분석 AI입니다.
 실제 뉴스/블로그 데이터를 기반으로 민심 분석 리포트를 생성합니다.
 반드시 JSON 형식으로만 응답하세요. 다른 텍스트는 포함하지 마세요.
