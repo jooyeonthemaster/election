@@ -178,7 +178,7 @@ async function handleGenerate(body: {
   keywords: string;
 }) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.5-flash-preview-05-20",
     systemInstruction: GENERATE_PROMPT,
   });
 
@@ -211,7 +211,7 @@ async function handleRefine(body: {
   messages: { role: string; content: string }[];
 }) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.5-flash-preview-05-20",
     systemInstruction: REFINE_PROMPT,
   });
 
@@ -278,7 +278,7 @@ async function handleFinalize(body: {
   tone: string;
 }) {
   const model = genAI.getGenerativeModel({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.5-flash-preview-05-20",
     systemInstruction: FINALIZE_PROMPT,
   });
 
