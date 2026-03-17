@@ -2,34 +2,55 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Zap } from "lucide-react";
+import { Menu, X, ChevronDown, Zap, LogIn, LogOut, Shield, Users } from "lucide-react";
 
-const services = [
+interface Session {
+  id: string;
+  role: string;
+  name: string;
+}
+
+const residentServices = [
   { name: "AI 공약 챗봇", href: "/services/pledge-bot", tag: "HOT" },
-  { name: "맞춤형 공약 개발", href: "/services/pledge-craft", tag: "NEW" },
-  { name: "AI 슬로건 제작", href: "/services/slogan-craft", tag: "NEW" },
-  { name: "민심 레이더", href: "/services/sentiment-radar", tag: "" },
-  { name: "인터랙티브 공약집", href: "/services/pledge-book", tag: "" },
-  { name: "여론 예측 AI", href: "/services/opinion-forecast", tag: "" },
-  { name: "캠프 전략 어드바이저", href: "/services/camp-strategy", tag: "" },
-  { name: "유권자 인사이트", href: "/services/voter-insight", tag: "" },
-  { name: "AI 홍보물 스튜디오", href: "/services/pr-studio", tag: "NEW" },
-  { name: "실시간 경쟁 분석", href: "/services/competitor-analysis", tag: "" },
+  { name: "구민의 소리", href: "/services/resident-voice", tag: "NEW" },
   { name: "정책 스와이프 매칭", href: "/services/policy-match", tag: "NEW" },
-  { name: "언론사 파트너 허브", href: "/services/media-partner", tag: "" },
+  { name: "인터랙티브 공약집", href: "/services/pledge-book", tag: "" },
 ];
 
 export default function Header() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => {
+        if (data?.session) setSession(data.session);
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setSession(null);
+    router.push("/");
+  };
+
+  const getDashboardLink = () => {
+    if (!session) return "/login";
+    return session.role === "candidate" ? "/candidate" : "/staff";
+  };
 
   return (
     <>
@@ -38,9 +59,7 @@ export default function Header() {
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "glass shadow-lg"
-            : "bg-transparent"
+          isScrolled ? "glass shadow-lg" : "bg-transparent"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
@@ -69,7 +88,7 @@ export default function Header() {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 <button className="flex items-center gap-1 px-4 py-2 text-[15px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-[var(--surface)]">
-                  서비스
+                  주민 서비스
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`} />
                 </button>
                 <AnimatePresence>
@@ -81,7 +100,7 @@ export default function Header() {
                       transition={{ duration: 0.2 }}
                       className="absolute top-full left-0 mt-1 w-[280px] bg-white rounded-2xl shadow-xl border border-[var(--border-light)] p-2 overflow-hidden"
                     >
-                      {services.map((service) => (
+                      {residentServices.map((service) => (
                         <Link
                           key={service.href}
                           href={service.href}
@@ -105,18 +124,41 @@ export default function Header() {
               </div>
 
               <Link href="/#features" className="px-4 py-2 text-[15px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-[var(--surface)]">
-                주요 기능
+                이용 안내
               </Link>
             </nav>
 
-            {/* CTA + Mobile Toggle */}
+            {/* Auth + Mobile Toggle */}
             <div className="flex items-center gap-3">
-              <Link
-                href="/#services"
-                className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-[var(--primary)] text-white text-[14px] font-semibold rounded-xl hover:bg-[var(--primary-dark)] transition-all duration-300 hover:shadow-[var(--shadow-primary)]"
-              >
-                서비스 둘러보기
-              </Link>
+              {session ? (
+                <div className="hidden lg:flex items-center gap-3">
+                  <Link
+                    href={getDashboardLink()}
+                    className="flex items-center gap-2 px-4 py-2 text-[14px] font-medium text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors rounded-lg hover:bg-[var(--surface)]"
+                  >
+                    {session.role === "candidate" ? (
+                      <Shield className="w-4 h-4" />
+                    ) : (
+                      <Users className="w-4 h-4" />
+                    )}
+                    {session.name}
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-4 py-2.5 text-[14px] font-medium text-[var(--text-secondary)] hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-[var(--primary)] text-white text-[14px] font-semibold rounded-xl hover:bg-[var(--primary-dark)] transition-all duration-300 hover:shadow-[var(--shadow-primary)]"
+                >
+                  <LogIn className="w-4 h-4" />
+                  관리자 로그인
+                </Link>
+              )}
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
                 className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[var(--surface)] transition-colors"
@@ -147,8 +189,8 @@ export default function Header() {
               className="absolute right-0 top-0 bottom-0 w-[320px] bg-white shadow-2xl p-6 pt-24"
             >
               <div className="flex flex-col gap-1">
-                <p className="text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-4 mb-2">서비스</p>
-                {services.map((service) => (
+                <p className="text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider px-4 mb-2">주민 서비스</p>
+                {residentServices.map((service) => (
                   <Link
                     key={service.href}
                     href={service.href}
@@ -168,13 +210,34 @@ export default function Header() {
                   </Link>
                 ))}
                 <div className="h-px bg-[var(--border-light)] my-4" />
-                <Link
-                  href="/#services"
-                  onClick={() => setIsMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 px-5 py-3 bg-[var(--primary)] text-white text-[15px] font-semibold rounded-xl"
-                >
-                  서비스 둘러보기
-                </Link>
+                {session ? (
+                  <>
+                    <Link
+                      href={getDashboardLink()}
+                      onClick={() => setIsMobileOpen(false)}
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-[15px] font-medium text-[var(--primary)] bg-[var(--primary-50)]"
+                    >
+                      {session.role === "candidate" ? <Shield className="w-4 h-4" /> : <Users className="w-4 h-4" />}
+                      {session.name} 대시보드
+                    </Link>
+                    <button
+                      onClick={() => { handleLogout(); setIsMobileOpen(false); }}
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-[15px] font-medium text-red-500 hover:bg-red-50"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      로그아웃
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setIsMobileOpen(false)}
+                    className="flex items-center justify-center gap-2 px-5 py-3 bg-[var(--primary)] text-white text-[15px] font-semibold rounded-xl"
+                  >
+                    <LogIn className="w-4 h-4" />
+                    관리자 로그인
+                  </Link>
+                )}
               </div>
             </motion.div>
           </motion.div>

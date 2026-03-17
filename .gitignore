@@ -48,3 +48,4 @@ nul
 .playwright-mcp/
 
 .vercel
+.mcp.json
