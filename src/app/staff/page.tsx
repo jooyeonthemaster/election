@@ -104,7 +104,7 @@ export default function StaffDashboard() {
       })
       .catch(() => setLoading(false));
 
-    fetch("/api/resident-voice/list")
+    fetch("/api/resident-voice/list", { cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => setVoiceCount(data.stats?.total || 0))
       .catch(() => {});

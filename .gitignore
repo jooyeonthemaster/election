@@ -49,3 +49,5 @@ nul
 
 .vercel
 .mcp.json
+
+.env*.local
